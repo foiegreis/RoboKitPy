@@ -3,7 +3,7 @@ from robokitpy.models.spatial.robot import Robot
 
 
 """ RRR robot """
-
+# TODO check the model
 
 class RRR(Robot):
     def __init__(self):

@@ -9,19 +9,20 @@ if __name__ == "__main__":
 
     # Joint configuration
     thetalist = np.array([np.radians(-10), np.radians(20)])
+    thetalist = np.array([np.radians(60), np.radians(60)])
 
     # Forward Kinematics
     fk = model.fk(thetalist)
-    print("FK ", fk)
+    print("\nFK\n", fk)
 
     # Jacobian
     J = model.jacobian(thetalist)
-    print("J ", J)
+    print("\nJ\n", J)
 
     # Differential Forward Kinematics
     thetadot_1 = np.array([1, 0])
     dfk = differential_fk(J, thetadot_1)
-    print("DFK ", dfk)
+    print("\nDFK\n", dfk)
 
     # Velocity and Force ellipses
     plot_robot_2d(model, thetalist, velocity_ellipsoid=True, force_ellipsoid=True)

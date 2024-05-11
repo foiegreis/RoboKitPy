@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 from robokitpy.core.ellipsoid import *
 
 """ Functions to plot robot and velocity and force ellipsoids in 3D """
-
+# TODO CHECK SINGULARITIES
+# TODO AT SINGULARITY IT BECOMES ISOTROPIC? IMPOSSIBLE
 
 def get_robot_3d(model, thetalist):
     """
@@ -89,7 +90,7 @@ def plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     norm = np.linalg.norm(direction)
     direction = direction / norm if norm != 0 else direction
     ax.quiver(end_effector_pos[0], end_effector_pos[1], end_effector_pos[2], direction[0], direction[1], direction[2],
-              length=0.1, color='r', normalize=True, arrow_length_ratio=0.5, label='End Effector')
+              length=0.08, color='r', normalize=True, arrow_length_ratio=0.5, label='End Effector')
 
     # Plot velocity and force ellipsoids -------------------------------
     Aw, Av, Bw, Bv = ellipsoids_3d(J)
@@ -98,16 +99,18 @@ def plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
         plot_ellipsoid_3d(ax, A, end_effector_pos, scale, color='r')
     if force_ellipsoid:
         B = Bv if linear else Bw
-        plot_ellipsoid_3d(ax, B, end_effector_pos, scale, color='y')
+        if None not in B:
+            plot_ellipsoid_3d(ax, B, end_effector_pos, scale, color='y')
 
     # Show the plot ----------------------------------------------------
     ax.view_init(elev=20, azim=45)  # elev=20° above, azim=45° around the z-axis
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
-    ax.set_xlim([-2, 2])
-    ax.set_ylim([-2, 2])
-    ax.set_zlim([-1, 2])
+    ax.xaxis.get_data_interval()
+    ax.yaxis.get_data_interval()
+    ax.zaxis.get_data_interval()
+    ax.margins(0.1)
     ax.set_title(f'3D Visualization of the {name}, {joints_type} robot with {joints_num} dof')
     plt.show()
 

@@ -8,7 +8,7 @@ if __name__ == "__main__":
     model = RRR_PLANAR()
 
     # Joint configuration
-    thetalist = np.array([np.radians(-10), np.radians(20), np.radians(20)])
+    thetalist = np.array([np.radians(10), np.radians(50), np.radians(50)])
 
     # Forward Kinematics
     fk = model.fk(thetalist)

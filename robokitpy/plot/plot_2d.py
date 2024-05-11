@@ -57,7 +57,7 @@ def plot_robot_2d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     norm = np.linalg.norm(direction)
     direction = direction / norm if norm != 0 else direction
     ax.quiver(end_effector_pos[0], end_effector_pos[1], direction[0], direction[1],
-            angles='xy', scale_units='xy', scale=1, color='r')
+            angles='xy', scale_units='xy', color='r')
 
     # Plot velocity and force ellipses -----------------------------------
     (axes_A, vect_A), (axes_B, vect_B) = ellipsoids_2d(J)
@@ -79,13 +79,14 @@ def plot_robot_2d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     #lin_vel_3 = plt.quiver(x2, y2, dfk_3[0], dfk_3[1], angles='xy', scale_units='xy', scale=1, color='b', alpha=0.75)
 
     # Show the plot ---------------------------------------------------------
-    plt.xlim(-2, 3.8)
-    plt.ylim(-1.5, 2.5)
+    ax.xaxis.get_data_interval()
+    ax.yaxis.get_data_interval()
+    ax.margins(0.1)
     ax.set_aspect('equal', adjustable='box')
-    plt.grid(True, linestyle='-')  # '--' specifies dashed lines
-    plt.title('2R Robotic Arm')
-    plt.xlabel('X position')
-    plt.ylabel('Y position')
+    plt.grid(True, linestyle='--')  # '--' specifies dashed lines
+    plt.title(f'{name}, {joints_type} 2D Robot with {joints_num} dof')
+    plt.xlabel('X')
+    plt.ylabel('Y')
     plt.show()
 
 
