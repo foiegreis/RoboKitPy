@@ -1,5 +1,10 @@
 import numpy as np
-from .robot import Robot
+from robokitpy.models.spatial.robot import Robot
+
+
+""" Puma 560 Robot """
+# TODO compute M, S_list, B_list
+
 
 class Puma560(Robot):
     def __init__(self):
@@ -16,7 +21,6 @@ class Puma560(Robot):
         self.L3 = 0.4318
         self.H1 = 0.0203
 
-        #TODO compute M, S_list, B_list
 
     def M(self):
         """M home configuration htm matrix"""

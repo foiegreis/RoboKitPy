@@ -1,5 +1,6 @@
-from plot.plot_3d import *
-from models.spatial.ur5e import UR5e
+from robokitpy.models.spatial.ur5e import UR5e
+from robokitpy.plot.plot_3d import *
+
 
 if __name__ == '__main__':
 
@@ -7,4 +8,4 @@ if __name__ == '__main__':
 
     model = UR5e()
 
-    plot_robot(model, thetalist, velocity_ellipsoid=True, force_ellipsoid=True, linear=False, scale=0.1)
+    plot_robot_3d(model, thetalist, velocity_ellipsoid=True, force_ellipsoid=False, linear=False, scale=0.1)

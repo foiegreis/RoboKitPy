@@ -1,5 +1,10 @@
 import numpy as np
-from .robot import Robot
+from robokitpy.models.spatial.robot import Robot
+
+
+""" PRRRRP Robot """
+# TODO compute DH, B_list, M
+
 
 class PRRRRP(Robot):
     def __init__(self):
@@ -9,7 +14,6 @@ class PRRRRP(Robot):
         self.joints_num = 6
         self.joints_type = "PRRRRP"
 
-        #TODO compute DH, B_list, M
 
     def M(self):
         """M home configuration htm matrix"""

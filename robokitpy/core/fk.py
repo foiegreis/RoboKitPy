@@ -1,4 +1,7 @@
-from .base import *
+from robokitpy.core.base import *
+
+""" Functions to compute Forward Kineamtcis """
+
 
 def dh_to_htm(alpha=None, a=None, d=None, phi=None):
     """

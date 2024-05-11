@@ -1,5 +1,7 @@
 import numpy as np
 
+""" Functions to compute statics """
+
 
 def statics(J, F):
     """Computes the statics equation of the joint torques given the Jacobian Matrix and the

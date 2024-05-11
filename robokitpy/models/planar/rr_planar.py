@@ -1,5 +1,9 @@
 import numpy as np
-from core.base import near_zero
+from robokitpy.core.base import near_zero
+
+
+""" RR Planar Robot """
+
 
 class RR_PLANAR:
     def __init__(self):

@@ -1,4 +1,6 @@
-from .dfk import *
+from robokitpy.core.dfk import *
+
+""" Functions to compute Inverse Kinematics """
 
 
 def ik_body(M, b_list, T_sd, theta_list_0, e_omega, e_v, max_iterations=10):

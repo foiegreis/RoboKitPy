@@ -1,7 +1,9 @@
 import numpy as np
-from robot import Robot
+from robokitpy.models.spatial.robot import Robot
+
 
 """ RRR robot """
+
 
 class RRR(Robot):
     def __init__(self):

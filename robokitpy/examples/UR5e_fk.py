@@ -1,5 +1,6 @@
-from core.fk import *
-from models.spatial.ur5e import UR5e
+from robokitpy.core.fk import *
+from robokitpy.models.spatial.ur5e import UR5e
+
 
 if __name__ == "__main__":
 

@@ -1,4 +1,6 @@
-from .fk import *
+from robokitpy.core.fk import *
+
+""" Functions to compute Jacobian matrices and Differential Forward Kinematics """
 
 
 def jacobian_body(b_list, theta_list):

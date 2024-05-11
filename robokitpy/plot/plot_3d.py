@@ -1,8 +1,34 @@
 import matplotlib.pyplot as plt
-from core.ellipsoid import *
+from robokitpy.core.ellipsoid import *
+
+""" Functions to plot robot and velocity and force ellipsoids in 3D """
 
 
-def plot_ellipsoid(ax, ellipsoid, center, scale=0.2, color='b'):
+def get_robot_3d(model, thetalist):
+    """
+    :param model: instance of the Robot class
+    :param thetalist: joint configuration
+    :return: name, joints_num, joints_type, J, joints
+    """
+
+    # Model attributes
+    name = model.name
+    joints_num = model.joints_num
+    joints_type = model.joints_type
+
+    # Fk and joint positions
+    dh_table = model.DH(thetalist)
+    fk = fk_dh(dh_table)
+    joints = joints_position_from_fk(dh_table)
+
+    # Jacobian
+    b_list = model.B()
+    J = jacobian_body(b_list, thetalist)
+
+    return name, joints_num, joints_type, J, joints
+
+
+def plot_ellipsoid_3d(ax, ellipsoid, center, scale=0.2, color='b'):
     """
     Plot a velocity ellipsoid for a given Jacobian at the specified center point.
 
@@ -32,35 +58,11 @@ def plot_ellipsoid(ax, ellipsoid, center, scale=0.2, color='b'):
     ax.plot_surface(x, y, z, rstride=4, cstride=4, color=color, alpha=0.5)
 
 
-def compute_robot(model, thetalist):
-    """
-    :param model: instance of the Robot class
-    :param thetalist: joint configuration
-    :return: name, joints_num, joints_type, J, joints
-    """
-
-    # Model attributes
-    name = model.name
-    joints_num = model.joints_num
-    joints_type = model.joints_type
-
-    # Fk and joint positions
-    dh_table = model.DH(thetalist)
-    fk = fk_dh(dh_table)
-    joints = joints_position_from_fk(dh_table)
-
-    # Jacobian
-    b_list = model.B()
-    J = jacobian_body(b_list, thetalist)
-
-    return name, joints_num, joints_type, J, joints
-
-
-def plot_robot(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=False, linear=False, scale=0.1):
+def plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=False, linear=False, scale=0.1):
     """
     Plot the robot using the computed joint coordinates.
     """
-    name, joints_num, joints_type, J, joints = compute_robot(model, thetalist)
+    name, joints_num, joints_type, J, joints = get_robot_3d(model, thetalist)
 
     # Create a 3D plot
     fig = plt.figure()
@@ -93,10 +95,10 @@ def plot_robot(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=False
     Aw, Av, Bw, Bv = ellipsoids_3d(J)
     if velocity_ellipsoid:
         A = Av if linear else Aw
-        plot_ellipsoid(ax, A, end_effector_pos, scale, color='r')
+        plot_ellipsoid_3d(ax, A, end_effector_pos, scale, color='r')
     if force_ellipsoid:
         B = Bv if linear else Bw
-        plot_ellipsoid(ax, B, end_effector_pos, scale, color='y')
+        plot_ellipsoid_3d(ax, B, end_effector_pos, scale, color='y')
 
     # Show the plot ----------------------------------------------------
     ax.view_init(elev=20, azim=45)  # elev=20° above, azim=45° around the z-axis

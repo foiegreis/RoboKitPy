@@ -1,6 +1,7 @@
-from core.dfk import *
-from core.statics import *
-from models.spatial.prrrrp import PRRRRP
+from robokitpy.core.dfk import *
+from robokitpy.core.statics import *
+from robokitpy.models.spatial.prrrrp import PRRRRP
+
 
 if __name__ == "__main__":
 

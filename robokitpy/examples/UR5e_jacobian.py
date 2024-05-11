@@ -1,5 +1,5 @@
-from core.dfk import *
-from models.spatial.ur5e import UR5e
+from robokitpy.core.dfk import *
+from robokitpy.models.spatial.ur5e import UR5e
 
 
 if __name__ == "__main__":

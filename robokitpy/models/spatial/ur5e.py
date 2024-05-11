@@ -1,5 +1,9 @@
 import numpy as np
-from .robot import Robot
+from robokitpy.models.spatial.robot import Robot
+
+
+""" UR5e Robot"""
+
 
 class UR5e(Robot):
     def __init__(self):

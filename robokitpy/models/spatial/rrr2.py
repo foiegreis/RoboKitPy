@@ -1,7 +1,9 @@
 import numpy as np
-from .robot import Robot
+from robokitpy.models.spatial.robot import Robot
+
 
 """ RRR Coplanar robot """
+
 
 class RRR_coplanar(Robot):
     def __init__(self):

@@ -1,5 +1,6 @@
-from core.dfk import *
-from models.spatial.rrr2 import RRR_coplanar
+from robokitpy.core.dfk import *
+from robokitpy.models.spatial.rrr2 import RRR_coplanar
+
 
 if __name__ == "__main__":
 

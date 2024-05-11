@@ -1,7 +1,6 @@
-from core.ellipsoid import *
-from plot.plot_2d import *
-from core.dfk import *
-from models.planar.rrr_planar import RRR_PLANAR
+from robokitpy.plot.plot_2d import *
+from robokitpy.core.dfk import *
+from robokitpy.models.planar.rrr_planar import RRR_PLANAR
 
 if __name__ == "__main__":
 

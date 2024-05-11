@@ -1,13 +1,12 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
-from core.ellipsoid import *
+from robokitpy.core.ellipsoid import *
 
 
-def compute_robot_2d(model, thetalist):
+""" Functions to plot robot and velocity and force ellipsoids in 2D """
+
+
+def get_robot_2d(model, thetalist):
     """
     Computes the Forward Kinematics and Jacobian of the Robot, given the model.
 
@@ -39,7 +38,7 @@ def plot_robot_2d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     # Create a figure and an axes
     fig, ax = plt.subplots()
 
-    name, joints_num, joints_type, J, joints = compute_robot_2d(model, thetalist)
+    name, joints_num, joints_type, J, joints = get_robot_2d(model, thetalist)
 
     # Plot a base line -----------------------------------------------
     x = np.linspace(-1, 1, 100)

@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 
 
+""" Spatial robot abstract class """
+
+
 class Robot(ABC):
     def __init__(self):
         self.name = None
