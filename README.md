@@ -8,7 +8,7 @@
 </p>
 
 
-# Contents
+## Contents
 
 - [RoboKitPy](#1)
 - [Installation](#2)
@@ -17,7 +17,7 @@
 
 
 
-# RoboKitPy
+## RoboKitPy
 
 **RoboKitPy** is an open-source Python library designed to bridge the gap between theoretical robotics concepts and practical application. The repository serves as a comprehensive toolkit for both students and professionals, facilitating an easier understanding of complex robotics topics through well-documented and executable Python code.
 
@@ -63,18 +63,18 @@ RoboKitPy runs in parallel with theoretical posts and tutorials available at my 
 We welcome contributions from the community to help grow RoboKitPy and make robotics more accessible to a broader audience. Whether you're interested in adding new models, improving existing algorithms, or providing educational content, your input is valuable.
 
 
-# Installation
+## Installation
 
 Requirements: Python >= 3.6
 
-## Using pip
+### Using pip
 
 **Coming Soon**
 ```shell script
 pip3 install robokitpy
 ```
 
-## From GitHub
+### From GitHub
 
 ```shell script
 git clone https://github.com/foiegreis/RoboKitPy.git
@@ -83,11 +83,11 @@ pip3 install -e .
 ```
 
 
-# Tutorials
+## Tutorials
 The [`examples`](https://github.com/foiegreis/RoboKitPy/tree/main/robokitpy/examples) folder contains some examples on the functionalities of the package. 
 
 
-# Code Examples
+## Code Examples
 
 We will load a model of the Franka-Emika Panda robot defined by a URDF file
 
