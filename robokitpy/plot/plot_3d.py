@@ -99,7 +99,7 @@ def plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
         plot_ellipsoid_3d(ax, A, end_effector_pos, scale, color='r')
     if force_ellipsoid:
         B = Bv if linear else Bw
-        if None not in B:
+        if None not in B[1]:
             plot_ellipsoid_3d(ax, B, end_effector_pos, scale, color='y')
 
     # Show the plot ----------------------------------------------------
