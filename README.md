@@ -8,19 +8,11 @@
 -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<table style="border:0px">
-<tr style="border:0px">
-<td style="border:0px">
-<img src="https://github.com/foiegreis/robokitpy/tree/main/robokitpy/docs/imgs/robokipy_logo1.png" width="200"></td>
-<td style="border:0px">
-<ul>
-<li><a href="https://github.com/foiegreis/robokitpy>GitHub repository </a></li>
-</ul>
-</td>
-</tr>
-</table>
 
-<!-- <br> -->
+<p align="center">
+	<img src="https://github.com/foiegreis/RoboKitPy/tree/main/docs/imgs/robokipy_logo1.png" width="200">
+</p>
+
 
 ## Contents
 
@@ -56,7 +48,7 @@ pip3 install robokitpy
 ### From GitHub
 
 ```shell script
-git clone https://github.com/foiegreis/robokitpy.git
+git clone https://github.com/foiegreis/RoboKitPy.git
 cd robokitpy
 pip3 install -e .
 ```
@@ -66,7 +58,7 @@ pip3 install -e .
 <a id='3'></a>
 
 ## Tutorials
-The [`examples`](https://github.com/foiegreis/robokitpy/tree/main/robokitpy/examples) folder contains some examples on the functionalities of the package. 
+The [`examples`](https://github.com/foiegreis/RoboKitPy/tree/main/robokitpy/examples) folder contains some examples on the functionalities of the package. 
 
 <br>
 
@@ -201,7 +193,7 @@ That will generate this 3D plot
 
 
 <p align="center">
-	<img src="docs/imgs/ur5e.png">
+	<img src="docs/imgs/ur5e.png" with="300">
 </p>
 
 
