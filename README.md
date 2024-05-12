@@ -16,6 +16,7 @@
 - [Code Examples](#4)
 
 
+<a id='1'></a>
 
 ## RoboKitPy
 
@@ -63,6 +64,7 @@ RoboKitPy runs in parallel with theoretical posts and tutorials available at my 
 We welcome contributions from the community to help grow RoboKitPy and make robotics more accessible to a broader audience. Whether you're interested in adding new models, improving existing algorithms, or providing educational content, your input is valuable.
 
 
+<a id='2'></a>
 ## Installation
 
 Requirements: Python >= 3.6
@@ -83,10 +85,12 @@ pip3 install -e .
 ```
 
 
+<a id='3'></a>
 ## Tutorials
 The [`examples`](https://github.com/foiegreis/RoboKitPy/tree/main/robokitpy/examples) folder contains some examples on the functionalities of the package. 
 
 
+<a id='4'></a>
 ## Code Examples
 
 We will load a model of the Franka-Emika Panda robot defined by a URDF file
