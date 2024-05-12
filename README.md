@@ -28,13 +28,49 @@ Robotics toolbox in Python
 
 # RoboKitPy
 
-[...]
+RoboKitPy is an open-source Python library designed to bridge the gap between theoretical robotics concepts and practical application. The repository serves as a comprehensive toolkit for both students and professionals, facilitating an easier understanding of complex robotics topics through well-documented and executable Python code.
 
-This package was created in parallel with my website www.roboticsunveiled.com
+### Current Features
+RoboKitPy currently supports a wide range of functionalities centered around the core areas of robotics:
 
-<br>
+Forward Kinematics: Compute the position and orientation of the robot's end-effector based on given joint parameters.
+Inverse Kinematics: Determine the joint parameters necessary to achieve a desired end-effector position and orientation.
+Differential Forward Kinematics: Analyze the velocity relationships between joint velocities and end-effector velocities, featuring the calculation of manipulability and force ellipsoids to assess the performance and capability of robotic manipulators.
+Statics: Handle the static balance and force transmission within robotic structures.
 
-<a id='2'></a>
+### Supported Robotic Models
+The library includes implementations for various robotic configurations, both planar and spatial, making it versatile for different educational and research needs:
+
+Planar Robots: RR (2-DOF robot), RRR (3-DOF robot)
+Spatial Robots:
+RRR and RRR Coplanar configurations
+Puma560: A classic industrial robotic arm
+PRRRRP: A complex articulated robot
+UR5e: A modern, highly versatile robotic arm used in industries and academia
+
+### Upcoming Features
+RoboKitPy is actively being developed with future updates aimed at expanding its capabilities:
+
+Dynamics: In-depth analysis of motion dynamics for better control and efficiency.
+Trajectory Generation: Algorithms for smooth path planning for robot trajectories.
+Motion Planning and Obstacle Avoidance: Enhanced algorithms for navigating through complex environments.
+Behavioral Planning: Integration of decision-making processes in robotic tasks.
+SLAM (Simultaneous Localization and Mapping): Tools for robotic mapping and navigation in unknown environments.
+Mobile Robots: Expanding the library to include autonomous ground vehicles.
+Navigation, Sensor Fusion, and Perception: Advanced modules for robust robotic perception and interaction with the environment. 
+### Educational Companion
+RoboKitPy runs in parallel with theoretical posts and tutorials available at Robotics Unveiled. This resource provides a unique educational platform that aligns theoretical knowledge with practical implementation, enhancing learning and understanding of robotics systems.
+
+
+<p align="center">
+	<img src="docs/imgs/roboticsunveiled.png" width="500">
+</p>
+
+### Contribution and Community
+We welcome contributions from the community to help grow RoboKitPy and make robotics more accessible to a broader audience. Whether you're interested in adding new models, improving existing algorithms, or providing educational content, your input is valuable.
+
+Explore, learn, and contribute to RoboKitPy today and help shape the future of robotics education and research!
+
 
 # Installation
 
