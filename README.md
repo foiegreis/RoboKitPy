@@ -89,14 +89,16 @@ pip3 install -e .
 <a id='3'></a>
 
 ## Tutorials
-The [`examples`](https://github.com/foiegreis/RoboKitPy/tree/main/robokitpy/examples) folder contains some examples on the functionalities of the package. 
+The [`examples`](https://github.com/foiegreis/RoboKitPy/tree/main/robokitpy/examples) folder contains some tutorials on the functionalities of the package. 
 
 <br>
 <a id='4'></a>
 
 ## Code Examples
 
-We will load a model of the Franka-Emika Panda robot defined by a URDF file
+Let's see some examples for the UR5e Robot. We will analyze the Forward Kinematics using Denavit-Hartenberg and Product of Exponentials, as well as the Inverse Kinematics and we will then plot the robot and visualize the Manipulability and Force Ellipsoids.
+
+Starting with the Forward Kinematics:
 
 ```python
 from robokitpy.core.fk import *
@@ -207,7 +209,7 @@ Expected result:
  [ 0.78539816 -0.78539816  0.78539816 -1.57079633 -1.57079633  0.78539816]
 ```
 
-We can also plot the robot, showing the Velocity (Manipulability) and Force Ellipsoids
+Finally, we plot the robot showing the Velocity (Manipulability) and Force Ellipsoids
 
 ```python
 from robokitpy.models.spatial.ur5e import UR5e
