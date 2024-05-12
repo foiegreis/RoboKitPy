@@ -16,7 +16,10 @@ def ellipsoids_2d(J):
     axes_A = np.sqrt(lambd_A)
 
     # Force ellipsoid
-    axes_B, vect_B = 1/axes_A, vect_A
+    try:
+        axes_B, vect_B = 1/axes_A, vect_A
+    except RuntimeWarning:
+        axes_B, vect_B = None, None
 
     return (axes_A, vect_A), (axes_B, vect_B)
 

@@ -34,6 +34,7 @@ def get_robot_2d(model, thetalist):
 
 
 def plot_robot_2d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=False):
+    """ Draws the 2D robot and the velocity and force ellipsoids"""
 
     # Create a figure and an axes
     fig, ax = plt.subplots()
@@ -58,6 +59,7 @@ def plot_robot_2d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     direction = direction / norm if norm != 0 else direction
     ax.quiver(end_effector_pos[0], end_effector_pos[1], direction[0], direction[1],
             angles='xy', scale_units='xy', color='r')
+    # ax.plot(end_effector_pos[0], end_effector_pos[1], 'rD', label='End Effector')  # 'ro' for red circle
 
     # Plot velocity and force ellipses -----------------------------------
     (axes_A, vect_A), (axes_B, vect_B) = ellipsoids_2d(J)
@@ -74,10 +76,6 @@ def plot_robot_2d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
                             height=axes_B[1]*0.5, angle=angle, edgecolor='y', facecolor='none', lw=1)
         ax.add_patch(ellipse_force)
 
-    #lin_vel_1 = plt.quiver(x2, y2, dfk_1[0], dfk_1[1], angles='xy', scale_units='xy', scale=1, color='r', alpha=0.75)
-    #lin_vel_2 = plt.quiver(x2, y2, dfk_2[0], dfk_2[1], angles='xy', scale_units='xy', scale=1, color='g', alpha=0.75)
-    #lin_vel_3 = plt.quiver(x2, y2, dfk_3[0], dfk_3[1], angles='xy', scale_units='xy', scale=1, color='b', alpha=0.75)
-
     # Show the plot ---------------------------------------------------------
     ax.xaxis.get_data_interval()
     ax.yaxis.get_data_interval()
@@ -88,6 +86,103 @@ def plot_robot_2d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.show()
+
+
+def plot_robot_2d_measures(model, thetalist_all, thetalist_show, velocity_ellipsoid=False, force_ellipsoid=False,
+                           mu1=False, mu2=False, mu3=False):
+    """ Draws one or more 2D robots and plots mu1, mu2, mu3 measures for a sequence of configurations """
+
+    # Create a figure and an axes
+    fig, ax = plt.subplots(4, 1)
+    mu1_list = []
+    mu2_list = []
+    mu3_list = []
+
+    # Plot a base line -----------------------------------------------
+    x = np.linspace(-0.5, 1, 100)
+    y = np.zeros_like(x)
+    ax[0].plot(x, y, 'g-')  # 'o' for circle markers
+
+    # Get measures --------------------------------------------------
+    for thetalist in thetalist_all:
+        _, _, _, J, joints = get_robot_2d(model, thetalist)
+
+        mu_1, mu_2, mu_3 = None, None, None
+
+        # Velocity measures
+        if velocity_ellipsoid:
+            A = J @ J.T
+            lambd_A, _ = eigen(A)
+            mu_1, mu_2, mu_3 = ellipsoid_measures(lambd_A)
+
+        # Force measures
+        if not velocity_ellipsoid and force_ellipsoid:
+            B = J.T @ J
+            lambd_B, _ = eigen(B)
+            mu_1, mu_2, mu_3 = ellipsoid_measures(lambd_B)
+
+        mu1_list.append(mu_1)
+        mu2_list.append(mu_2)
+        mu3_list.append(mu_3)
+
+    # Plot the robot --------------------------------------------------
+    for thetalist in thetalist_show:
+        _, _, _, J, joints = get_robot_2d(model, thetalist)
+        for start, end in zip(joints[:-1], joints[1:]):
+            xs, ys = zip(start, end)
+            ax[0].plot(xs, ys, 'b-o')
+
+        end_effector_pos = joints[-1]
+
+        # Plot velocity and force ellipses -----------------------------------
+        (axes_A, vect_A), (axes_B, vect_B) = ellipsoids_2d(J)
+        angle = np.degrees(np.arctan2(vect_A[1][0], vect_A[0][0]))
+
+        # Add the ellipsoid
+        if velocity_ellipsoid:
+            ellipse_vel = Ellipse((end_effector_pos[0], end_effector_pos[1]), width=axes_A[0],
+                              height=axes_A[1], angle=angle, edgecolor='r', facecolor='none', lw=2)
+            ax[0].add_patch(ellipse_vel)
+
+        if force_ellipsoid:
+            ellipse_force = Ellipse((end_effector_pos[0], end_effector_pos[1]), width=axes_B[0]*0.5,
+                                height=axes_B[1]*0.5, angle=angle, edgecolor='y', facecolor='none', lw=1)
+            ax[0].add_patch(ellipse_force)
+
+    if mu1:
+        i = 1
+        plot_measures(ax, 'mu1', 'Axes Ratio', i, len(thetalist_all), mu1_list)
+    if mu2:
+        i = 2
+        plot_measures(ax, 'mu2', 'Condition Number', i, len(thetalist_all), mu2_list)
+    if mu3:
+        i = 3
+        plot_measures(ax, 'mu3', 'Volume ratio',i, len(thetalist_all), mu3_list)
+
+    # Show the plot ---------------------------------------------------------
+    scope1 = 'Velocity' if velocity_ellipsoid else ''
+    scope2 = 'Force' if force_ellipsoid else ''
+    ax[0].set_title(f'{scope1} {scope2} ellipsoids RR 2D Robot with 2 dof')
+    ax[0].set_xlabel('x')
+    ax[0].set_ylabel('y')
+    ax[0].xaxis.get_data_interval()
+    ax[0].yaxis.get_data_interval()
+    ax[0].margins(0.1)
+    ax[0].grid(True, linestyle='--')  # '--' specifies dashed lines
+    fig.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1, hspace=0.5, wspace=0.5)
+    plt.show()
+
+
+def plot_measures(ax, name, description, i, n_el, values):
+    """ Plots measures"""
+
+    x_list = np.linspace(0, 2, n_el)
+    ax[i].plot(x_list, values, 'b-')  # Blue line for the second plot
+    ax[i].set_title(f'Ellipsoid {name} measure: {description} ')
+    ax[i].set_ylabel(name)
+    ax[i].set_xlabel('x')
+    ax[i].grid(True, linestyle='--')  # '--' specifies dashed lines
+
 
 
 
