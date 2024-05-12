@@ -1,17 +1,10 @@
 # RoboKitPy
-Robotics toolbox in Python   
+**Robotics toolbox in Python**
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
-
-<!---[![PyPI version](https://badge.fury.io/py/roboticstoolbox-python.svg)](https://badge.fury.io/py/roboticstoolbox-python)
-[![Anaconda version](https://anaconda.org/conda-forge/roboticstoolbox-python/badges/version.svg)](https://anaconda.org/conda-forge/roboticstoolbox-python)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/roboticstoolbox-python.svg)
--->
-
-
 <p align="center">
-	<img src="docs/imgs/robokitpy_logo1.png" width="500">
+	<img src="docs/imgs/robokitpy_logo1.png" width="400">
 </p>
 
 
@@ -22,9 +15,7 @@ Robotics toolbox in Python
 - [Tutorials](#3)
 - [Code Examples](#4)
 
-<br>
 
-<a id='1'></a>
 
 # RoboKitPy
 
@@ -33,10 +24,10 @@ RoboKitPy is an open-source Python library designed to bridge the gap between th
 ### Current Features
 RoboKitPy currently supports a wide range of functionalities centered around the core areas of robotics:
 
-- Forward Kinematics: Compute the position and orientation of the robot's end-effector based on given joint parameters.
-- Inverse Kinematics: Determine the joint parameters necessary to achieve a desired end-effector position and orientation.
-- Differential Forward Kinematics: Analyze the velocity relationships between joint velocities and end-effector velocities, featuring the calculation of manipulability and force ellipsoids to assess the performance and capability of robotic manipulators.
-- Statics: Handle the static balance and force transmission within robotic structures.
+- **Forward Kinematics**: Compute the position and orientation of the robot's end-effector based on given joint parameters.
+- **Inverse Kinematics**: Determine the joint parameters necessary to achieve a desired end-effector position and orientation.
+- **Differential Forward Kinematics**: Analyze the velocity relationships between joint velocities and end-effector velocities, featuring the calculation of manipulability and force ellipsoids to assess the performance and capability of robotic manipulators.
+- **Statics**: Handle the static balance and force transmission within robotic structures.
 
 ### Supported Robotic Models
 The library includes implementations for various robotic configurations, both planar and spatial, making it versatile for different educational and research needs:
@@ -53,17 +44,16 @@ The library includes implementations for various robotic configurations, both pl
 ### Upcoming Features
 RoboKitPy is actively being developed with future updates aimed at expanding its capabilities:
 
-- Dynamics: In-depth analysis of motion dynamics for better control and efficiency.
-- Trajectory Generation: Algorithms for smooth path planning for robot trajectories.
-- Motion Planning and Obstacle Avoidance: Enhanced algorithms for navigating through complex environments.
-- Behavioral Planning: Integration of decision-making processes in robotic tasks.
-- SLAM (Simultaneous Localization and Mapping): Tools for robotic mapping and navigation in unknown environments.
-- Mobile Robots: Expanding the library to include autonomous ground vehicles.
-- Navigation, Sensor Fusion, and Perception: Advanced modules for robust robotic perception and interaction with the environment. 
+- **Dynamics**: In-depth analysis of motion dynamics for better control and efficiency.
+- **Trajectory Generation**: Algorithms for smooth path planning for robot trajectories.
+- **Motion Planning and Obstacle Avoidance**: Enhanced algorithms for navigating through complex environments.
+- **Behavioral Planning**: Integration of decision-making processes in robotic tasks.
+- **SLAM**: Tools for robotic mapping and navigation in unknown environments.
+- **Mobile Robots**: Expanding the library to include autonomous ground vehicles.
+- **Navigation, Sensor Fusion, and Perception**: Advanced modules for robust robotic perception and interaction with the environment. 
 
 ### Educational Companion
-RoboKitPy runs in parallel with theoretical posts and tutorials available at Robotics Unveiled. This resource provides a unique educational platform that aligns theoretical knowledge with practical implementation, enhancing learning and understanding of robotics systems.
-
+RoboKitPy runs in parallel with theoretical posts and tutorials available at my website https://www.roboticsunveiled.com.
 
 <p align="center">
 	<img src="docs/imgs/roboticsunveiled.png" width="500">
@@ -72,8 +62,6 @@ RoboKitPy runs in parallel with theoretical posts and tutorials available at Rob
 ### Contribution and Community
 We welcome contributions from the community to help grow RoboKitPy and make robotics more accessible to a broader audience. Whether you're interested in adding new models, improving existing algorithms, or providing educational content, your input is valuable.
 
-Explore, learn, and contribute to RoboKitPy today and help shape the future of robotics education and research!
-
 
 # Installation
 
@@ -81,6 +69,7 @@ Requirements: Python >= 3.6
 
 ## Using pip
 
+**Coming Soon**
 ```shell script
 pip3 install robokitpy
 ```
@@ -93,16 +82,10 @@ cd robokitpy
 pip3 install -e .
 ```
 
-<br>
-
-<a id='3'></a>
 
 # Tutorials
 The [`examples`](https://github.com/foiegreis/RoboKitPy/tree/main/robokitpy/examples) folder contains some examples on the functionalities of the package. 
 
-<br>
-
-<a id='3'></a>
 
 # Code Examples
 
