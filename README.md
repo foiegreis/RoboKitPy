@@ -1,20 +1,21 @@
 # RoboKitPy
-## Robotics toolbox in Python
+Robotics toolbox in Python   
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 
 <!---[![PyPI version](https://badge.fury.io/py/roboticstoolbox-python.svg)](https://badge.fury.io/py/roboticstoolbox-python)
 [![Anaconda version](https://anaconda.org/conda-forge/roboticstoolbox-python/badges/version.svg)](https://anaconda.org/conda-forge/roboticstoolbox-python)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/roboticstoolbox-python.svg)
 -->
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 <p align="center">
-	<img src="https://github.com/foiegreis/RoboKitPy/tree/main/docs/imgs/robokipy_logo1.png" width="200">
+	<img src="docs/imgs/robokitpy_logo1.png" width="500">
 </p>
 
 
-## Contents
+# Contents
 
 - [RoboKitPy](#1)
 - [Installation](#2)
@@ -25,7 +26,7 @@
 
 <a id='1'></a>
 
-## RoboKitPy
+# RoboKitPy
 
 [...]
 
@@ -35,17 +36,17 @@ This package was created in parallel with my website www.roboticsunveiled.com
 
 <a id='2'></a>
 
-## Installation
+# Installation
 
 Requirements: Python >= 3.6
 
-### Using pip
+## Using pip
 
 ```shell script
 pip3 install robokitpy
 ```
 
-### From GitHub
+## From GitHub
 
 ```shell script
 git clone https://github.com/foiegreis/RoboKitPy.git
@@ -57,14 +58,14 @@ pip3 install -e .
 
 <a id='3'></a>
 
-## Tutorials
+# Tutorials
 The [`examples`](https://github.com/foiegreis/RoboKitPy/tree/main/robokitpy/examples) folder contains some examples on the functionalities of the package. 
 
 <br>
 
 <a id='3'></a>
 
-## Code Examples
+# Code Examples
 
 We will load a model of the Franka-Emika Panda robot defined by a URDF file
 
