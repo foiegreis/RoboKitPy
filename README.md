@@ -19,7 +19,7 @@
 
 # RoboKitPy
 
-RoboKitPy is an open-source Python library designed to bridge the gap between theoretical robotics concepts and practical application. The repository serves as a comprehensive toolkit for both students and professionals, facilitating an easier understanding of complex robotics topics through well-documented and executable Python code.
+**RoboKitPy** is an open-source Python library designed to bridge the gap between theoretical robotics concepts and practical application. The repository serves as a comprehensive toolkit for both students and professionals, facilitating an easier understanding of complex robotics topics through well-documented and executable Python code.
 
 ### Current Features
 RoboKitPy currently supports a wide range of functionalities centered around the core areas of robotics:
