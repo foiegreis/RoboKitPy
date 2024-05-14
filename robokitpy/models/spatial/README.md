@@ -13,7 +13,7 @@ This package comprises the following spatial robots models
 
 ## RRR 
 <p align="center">
-	<img src="../../../docs/imgs/RRR.png" width="300">
+	<img src="../../../docs/imgs/RRR.png" width="400">
 </p>
 
 <br>
@@ -21,7 +21,7 @@ This package comprises the following spatial robots models
 
 ## RRR coplanar
 <p align="center">
-	<img src="../../../docs/imgs/RRR_coplanar.png" width="300">
+	<img src="../../../docs/imgs/RRR_coplanar.png" width="400">
 </p>
 
 <br>
@@ -29,7 +29,7 @@ This package comprises the following spatial robots models
 
 ## RRP 
 <p align="center">
-	<img src="../../../docs/imgs/RRP.png" width="300">
+	<img src="../../../docs/imgs/RRP.png" width="400">
 </p>
 
 <br>
@@ -37,11 +37,11 @@ This package comprises the following spatial robots models
 
 ## UR5e
 <p align="center">
-	<img src="../../../docs/imgs/ur5e_model1.png" width="300">
+	<img src="../../../docs/imgs/ur5e_model1.png" width="400">
 </p>
 
 <p align="center">
-	<img src="../../../docs/imgs/ur5e_model2.png" width="300">
+	<img src="../../../docs/imgs/ur5e_model2.png" width="400">
 </p>
 
 <br>
@@ -49,7 +49,7 @@ This package comprises the following spatial robots models
 
 ## PRRRRP
 <p align="center">
-	<img src="../../../docs/imgs/PRRRRP.png" width="300">
+	<img src="../../../docs/imgs/PRRRRP.png" width="400">
 </p>
 
 
