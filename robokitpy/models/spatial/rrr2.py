@@ -3,7 +3,7 @@ from robokitpy.models.spatial.robot import Robot
 
 
 """ RRR Coplanar robot """
-
+# TODO Trovare model RRR coplanar
 
 class RRR_coplanar(Robot):
     def __init__(self):

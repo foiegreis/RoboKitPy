@@ -8,4 +8,4 @@ if __name__ == '__main__':
 
     model = UR5e()
 
-    plot_robot_3d(model, thetalist, velocity_ellipsoid=True, force_ellipsoid=True, linear=False, scale=0.1)
+    plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=True, linear=False, scale=0.1)

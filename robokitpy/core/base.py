@@ -205,6 +205,17 @@ def htm_to_log6(T):
         return mat_log
 
 
+def angles_and_p_from_T(T):
+    """ Returns rotation angles and translation vector given htm T"""
+    R = T[:3, :3]
+    p = T[:3, 3]
+    angle_x = np.arctan2(R[2][1], R[2][2])
+    angle_y = np.arctan2(-R[2][0], np.sqrt(R[2][1] ** 2 + R[2][2] ** 2))
+    angle_z = np.arctan2(R[1][0], R[0][0])
+
+    return (angle_x, angle_y, angle_z), p
+
+
 def eigen(M):
     """Returns eigen values and eigen vectors (columns) in descending order
     :param M: square matrix

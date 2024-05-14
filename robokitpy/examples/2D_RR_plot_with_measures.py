@@ -14,5 +14,5 @@ if __name__ == "__main__":
     conf_all = [(x, y) for x, y in zip(conf, conf2)]
 
     # Plots robots, velocity/force ellipsoids and mu_3 measure
-    plot_robot_2d_measures(model, conf_all, conf_show, velocity_ellipsoid=True, force_ellipsoid=False,
+    plot_robot_2d_measures(model, conf_all, conf_show, velocity_ellipsoid=False, force_ellipsoid=True,
                            mu1=True, mu2=True, mu3=True)

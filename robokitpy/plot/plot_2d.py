@@ -4,7 +4,7 @@ from robokitpy.core.ellipsoid import *
 
 
 """ Functions to plot robot and velocity and force ellipsoids in 2D """
-
+# TODO PLOT PRISMATIC JOINTS
 
 def get_robot_2d(model, thetalist):
     """
@@ -49,7 +49,13 @@ def plot_robot_2d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     # Plot the robot --------------------------------------------------
     for start, end in zip(joints[:-1], joints[1:]):
         xs, ys = zip(start, end)
-        ax.plot(xs, ys, 'b-o')
+        for c in name:
+            # revolute joints
+            if c == 'R':
+                ax.plot(xs, ys, 'b-o')
+            # prismatic joints
+            if c == 'P':
+                ax.plot(xs, ys, 'b-s')
 
     # Plot the end-effector marker -------------------------------------
     start_pos = joints[-2]
@@ -117,9 +123,9 @@ def plot_robot_2d_measures(model, thetalist_all, thetalist_show, velocity_ellips
 
         # Force measures
         if not velocity_ellipsoid and force_ellipsoid:
-            B = J.T @ J
-            lambd_B, _ = eigen(B)
-            mu_1, mu_2, mu_3 = ellipsoid_measures(lambd_B)
+            A = J @ J.T
+            lambd_A, _ = eigen(A)
+            mu_1, mu_2, mu_3 = ellipsoid_measures(1/lambd_A)
 
         mu1_list.append(mu_1)
         mu2_list.append(mu_2)

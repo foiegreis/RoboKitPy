@@ -225,7 +225,7 @@ That will generate this 3D plot
 
 
 <p align="center">
-	<img src="docs/imgs/ur5e.png" with="300">
+	<img src="docs/imgs/ur5e.png" width="500">
 </p>
 
 

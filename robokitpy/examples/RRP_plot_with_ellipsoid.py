@@ -1,11 +1,11 @@
 from robokitpy.plot.plot_3d import *
-from robokitpy.models.spatial.rrr import RRR
+from robokitpy.models.spatial.rrp import RRP
 
 
 if __name__ == '__main__':
 
     # Joints configuration
-    thetalist = np.array([0, np.pi/4, np.pi/6])
+    thetalist = np.array([0, np.pi/2, 2])
 
-    model = RRR()
+    model = RRP()
     plot_robot_3d(model, thetalist, velocity_ellipsoid=True, force_ellipsoid=False, linear=False, scale=0.1)

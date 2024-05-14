@@ -38,7 +38,9 @@ def ellipsoids_3d(J):
 
     # Linear velocity Ellipsoid
     lambd_Av, vect_Av = eigen(Av)
+
     axes_Av = np.sqrt(lambd_Av)
+
     measures_Av = ellipsoid_measures(lambd_Av)
 
     # Angular force ellipsoid

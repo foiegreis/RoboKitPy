@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
+import numpy as np
+
 from robokitpy.core.ellipsoid import *
 
 """ Functions to plot robot and velocity and force ellipsoids in 3D """
-# TODO CHECK SINGULARITIES
-# TODO AT SINGULARITY IT BECOMES ISOTROPIC? IMPOSSIBLE
+# TODO PLOT PRISMATIC JOINTS
 
 def get_robot_3d(model, thetalist):
     """
@@ -19,14 +20,13 @@ def get_robot_3d(model, thetalist):
 
     # Fk and joint positions
     dh_table = model.DH(thetalist)
-    fk = fk_dh(dh_table)
-    joints = joints_position_from_fk(dh_table)
+    _, T_list = fk_dh(dh_table, all=True)
 
     # Jacobian
     b_list = model.B()
     J = jacobian_body(b_list, thetalist)
 
-    return name, joints_num, joints_type, J, joints
+    return name, joints_num, joints_type, J, T_list
 
 
 def plot_ellipsoid_3d(ax, ellipsoid, center, scale=0.2, color='b'):
@@ -63,7 +63,7 @@ def plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     """
     Plot the robot using the computed joint coordinates.
     """
-    name, joints_num, joints_type, J, joints = get_robot_3d(model, thetalist)
+    name, joints_num, joints_type, J, T_list = get_robot_3d(model, thetalist)
 
     # Create a 3D plot
     fig = plt.figure()
@@ -79,13 +79,26 @@ def plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     ax.plot_surface(x, y, z, alpha=0.5, color='g')
 
     # Plot the robot ---------------------------------------------------
-    for start, end in zip(joints[:-1], joints[1:]):
-        xs, ys, zs = zip(start, end)
-        ax.plot(xs, ys, zs, 'b-o')
+    p_list = [T[:3, 3] for T in T_list]
+    start_p_list = p_list[:-1]
+    end_p_list = p_list[1:]
+
+    # plot origin
+    xs, ys, zs = zip(start_p_list[0], end_p_list[0])
+    ax.plot(xs, ys, zs, 'b-o')
+
+    # plot links and joints
+    for i, c in enumerate(joints_type):
+        if c == 'R':
+            xs, ys, zs = zip(start_p_list[i], end_p_list[i])
+            ax.plot(xs, ys, zs, 'b-o')
+        if c == 'P':
+            xs, ys, zs = zip(start_p_list[i], end_p_list[i])
+            ax.plot(xs, ys, zs, 'b-s')
 
     # Plot the end-effector marker -------------------------------------
-    start_pos = joints[-2]
-    end_effector_pos = joints[-1]
+    start_pos = p_list[-2]
+    end_effector_pos = p_list[-1]
     direction = np.array(end_effector_pos) - np.array(start_pos)
     norm = np.linalg.norm(direction)
     direction = direction / norm if norm != 0 else direction
