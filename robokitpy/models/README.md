@@ -1,5 +1,7 @@
 # RoboKitPy Models
 
+The following models of Planar and Spatial robots are available
+
 - [Planar](#1)
   - [RR](#11)
   - [RRR](#12)
@@ -10,6 +12,99 @@
   - [UR5e](#24)
   - [PRRRP](#25)
 
+## File Structure
+
+The model files have the following structure:
+
+Planar (geometric models):
+```python
+
+class PlanarRobot:
+    def __init__(self):
+
+        self.name = ""
+        self.joints_num = None
+        self.joints_type = ""
+
+        self._L1 = None
+        self._L2 = None
+        #[...]
+
+    @property
+    def L1(self):
+        return self._L1
+
+    @property
+    def L2(self):
+        return self._L2
+
+    @L1.setter
+    def L1(self, value):
+        assert isinstance(value, int)
+        self._L1 = value
+
+    @L2.setter
+    def L2(self, value):
+        assert isinstance(value, int)
+        self._L2 = value
+
+    def fk(self, thetalist):
+        """
+        Forward Kinematics
+        """
+        pass
+    
+    def joints(self, thetalist):
+        """
+        Joint positions
+        """
+        pass
+
+    def jacobian(self, thetalist):
+        """
+        Jacobian matrix
+        """
+        pass
+
+```
+
+Spatial:
+```python
+class Robot(ABC):
+    def __init__(self):
+        self.name = None
+        self.joints_num = None
+        self.joints_type = None
+
+    @abstractmethod
+    def M(self):
+        """
+        Abstract method to return the home configuration matrix of the robot.
+        """
+        pass
+
+    @abstractmethod
+    def S(self):
+        """
+        Abstract method to return the screw axis of the robot.
+        """
+        pass
+
+    @abstractmethod
+    def B(self):
+        """
+        Abstract method to return the body-fixed screw axes.
+        """
+        pass
+
+    @abstractmethod
+    def DH(self, thetalist):
+        """
+        Abstract method to return Denavit-Hartenberg parameters | alpha - a - d - phi  |
+.
+        """
+        pass
+```
 
 <br>
 <a id='1'></a>
