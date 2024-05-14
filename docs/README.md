@@ -1,2 +1,1 @@
-# RoboKitPy
-Robotics toolbox in Python
+# RoboKitPy Docs
