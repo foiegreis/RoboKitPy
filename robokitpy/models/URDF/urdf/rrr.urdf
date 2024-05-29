@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!-- ======================================= -->
+<!-- |  URDF for the RRR (3R) Robot     -- NO INERTIA   | -->
+<!-- ======================================= -->
+
+<robot name="rrr_description">
+
+<!-- Material Definition -->
+  <material name="white">
+      <color rgba="1 1 1 0.5"/>
+  </material>
+  <material name="red">
+      <color rgba="1 0 0 1"/>
+  </material>
+  <material name="orange">
+      <color rgba="1 0.3 0.1 1"/>
+  </material>
+  <material name="blue">
+      <color rgba="0.2 0.2 1 1"/>
+  </material>
+  <material name="black">
+      <color rgba="0 0 0 1"/>
+  </material>
+  <material name="grey">
+      <color rgba="0.5 0.5 0.5 1"/>
+  </material>
+
+
+<!-- ================================= -->
+<!-- |  INERTIAL PROPERTIES - LINKS  | -->
+<!-- ================================= -->
+
+<!-- World link -->
+<link name="world"/>
+
+<!-- Base Link -->
+<link name="base">
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 -0.2"/>
+        <geometry>
+        <box size="0.4 0.4 0.4"/>
+        </geometry>
+        <material name="blue"/>
+    </visual>
+  </link>
+
+<!-- Link1 -->
+<link name="link1">
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0.4"/>
+        <geometry>
+        <cylinder length="1.0" radius="0.1"/>
+        </geometry>
+        <material name="grey"/>
+    </visual>
+</link>
+
+<!-- sphere1-->
+<link name="sphere1">
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+        <sphere radius="0.2"/>
+        </geometry>
+        <material name="grey"/>
+    </visual>
+</link>
+
+<!-- Link2-->
+<link name="link2">
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0.5"/>
+        <geometry>
+        <cylinder length="1.0" radius="0.1"/>
+        </geometry>
+        <material name="grey"/>
+    </visual>
+</link>
+
+<!-- sphere2-->
+<link name="sphere2">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <sphere radius="0.2"/>
+        </geometry>
+        <material name="grey"/>
+    </visual>
+</link>
+
+<!-- Link3-->
+<link name="link3">
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0.5"/>
+        <geometry>
+        <cylinder length="1.0" radius="0.1"/>
+        </geometry>
+        <material name="grey"/>
+    </visual>
+</link>
+
+<!-- Gripper Link-->
+<link name="gripper">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 -1.57 0"/>
+        <geometry>
+        <mesh filename="package://ros2_sim_description/meshes/gripper_base.dae" scale="3 3 3"/>
+        </geometry>
+        <material name="grey"/>
+    </visual>
+</link>
+<!-- ================================= -->
+<!-- | KINEMATIC PROPERTIES - JOINTS | -->
+<!-- ================================= -->
+
+<!-- World_Base_Joint -->
+<joint name="base_to_world" type="fixed">
+    <parent link="world"/>
+    <child link="base"/>
+    <origin rpy="0 0 0" xyz="0 0 0.4"/>
+  </joint>
+
+<!-- Base_Link1_Joint REVOLUTE-->
+<joint name="base_link1_joint" type="revolute">
+    <parent link="base"/>
+    <child link="link1"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+</joint>
+
+<!-- Link1_sphere1_Joint REVOLUTE-->
+<joint name="link1_sphere1_joint" type="revolute">
+    <parent link="link1"/>
+    <child link="sphere1"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0 0 1.05"/>
+    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+</joint>
+
+<!-- Sphere1_Link2_Joint FIXED-->
+<joint name="sphere1_link2_joint" type="fixed">
+    <parent link="sphere1"/>
+    <child link="link2"/>
+    <origin rpy="0 0 0" xyz="0 0 0.15"/>
+</joint>
+
+<!-- Link2_sphere2_Joint REVOLUTE-->
+<joint name="link2_sphere2_joint" type="revolute">
+    <parent link="link2"/>
+    <child link="sphere2"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0 0 1.05"/>
+    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+</joint>
+
+<!-- Sphere2_Link3_Joint FIXED-->
+<joint name="sphere2_link3_joint" type="fixed">
+    <parent link="sphere2"/>
+    <child link="link3"/>
+    <origin rpy="0 0 0" xyz="0 0 0.15"/>
+</joint>
+
+<!-- Link3_Grippe_Joint FIXED-->
+<joint name="link3_gripper_joint" type="fixed">
+    <parent link="link3"/>
+    <child link="gripper"/>
+    <origin rpy="0 0 0" xyz="0 0 1.0"/>
+</joint>
+
+
+</robot>

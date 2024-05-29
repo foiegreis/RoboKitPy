@@ -1,4 +1,4 @@
-from robokitpy.core.dfk import *
+from robokitpy.core.differential_kinematics import *
 from robokitpy.models.spatial.ur5e import UR5e
 
 

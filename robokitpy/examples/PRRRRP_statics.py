@@ -1,4 +1,4 @@
-from robokitpy.core.dfk import *
+from robokitpy.core.differential_kinematics import *
 from robokitpy.core.statics import *
 from robokitpy.models.spatial.prrrrp import PRRRRP
 

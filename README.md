@@ -101,7 +101,7 @@ Let's see some examples for the UR5e Robot. We will analyze the Forward Kinemati
 Starting with the Forward Kinematics:
 
 ```python
-from robokitpy.core.fk import *
+from robokitpy.core.kinematics import *
 from robokitpy.models.spatial.ur5e import UR5e
 
 # UR5e
@@ -158,7 +158,7 @@ Forward Kinematics T06 applying PoE Space Form for the configuration [0.7854, -0
 For the inverse kinematics, the code will have a similar fashion:
 
 ```python
-from robokitpy.core.ik import *
+from robokitpy.core.kinematics import *
 from robokitpy.models.spatial.ur5e import UR5e
 
 # Desired end-effector pose

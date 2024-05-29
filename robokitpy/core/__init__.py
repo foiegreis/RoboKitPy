@@ -1,1 +1,1 @@
-from robokitpy.core import base, dfk, ellipsoid, fk, ik, statics
+from robokitpy.core import base, kinematics, differential_kinematics, ellipsoid, statics, dynamics

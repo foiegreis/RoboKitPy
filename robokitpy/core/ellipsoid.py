@@ -1,4 +1,4 @@
-from robokitpy.core.dfk import *
+from robokitpy.core.differential_kinematics import *
 import warnings
 warnings.filterwarnings('error', category=RuntimeWarning)
 

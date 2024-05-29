@@ -1,5 +1,5 @@
 from robokitpy.plot.plot_2d import *
-from robokitpy.core.dfk import *
+from robokitpy.core.differential_kinematics import *
 from robokitpy.models.planar.rrr_planar import RRR_PLANAR
 
 if __name__ == "__main__":

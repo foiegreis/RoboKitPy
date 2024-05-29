@@ -1,4 +1,4 @@
-from robokitpy.core.dfk import *
+from robokitpy.core.differential_kinematics import *
 from robokitpy.models.spatial.rrr2 import RRR_coplanar
 
 

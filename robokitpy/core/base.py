@@ -1,5 +1,6 @@
 import numpy as np
 
+""" Functions to compute linear algebra """
 
 def near_zero(z):
     """
@@ -98,7 +99,6 @@ def skew3_to_matrix_exp3(p_sk):
     Computes the 3x3 matrix exponential Rot(p_hat, theta) = e^[p]theta of the exp coordinates p_hat*theta, given [p] and theta
     using the Rodrigues formula for rotations
     :param p_sk: 3x3 skew symmetric matrix
-    :param theta: angle [rad]
     :return: 3x3 matrix exponential
     """
 
@@ -224,3 +224,23 @@ def eigen(M):
     eigval, eigvec = np.linalg.eig(M)
     idx = eigval.argsort()[::-1]
     return eigval[idx], eigvec[:, idx]
+
+
+def htm_adjoint(T):
+    """Computes the adjoint representation of a homogeneous transformation matrix
+    :param T: A 4 x 4 homogeneous transformation matrix
+    :return: The 6x6 adjoint representation [AdT] of T
+    """
+    R, p = htm_to_rp(T)
+    return np.r_[np.c_[R, np.zeros((3, 3))],
+                 np.c_[np.dot(vec3_to_skew3(p), R), R]]
+
+
+def ad(V):
+    """Computes the 6x6 matrix [adV] of the given 6-vector - LIE BRACKET
+    :param V: A 6-vector spatial velocity
+    :return: The corresponding 6x6 matrix [adV]
+    """
+    omgmat = vec3_to_skew3([V[0], V[1], V[2]])
+    return np.r_[np.c_[omgmat, np.zeros((3, 3))],
+                 np.c_[vec3_to_skew3([V[3], V[4], V[5]]), omgmat]]

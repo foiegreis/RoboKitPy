@@ -1,4 +1,4 @@
-from robokitpy.core.fk import *
+from robokitpy.core.kinematics import *
 
 """ Functions to compute Jacobian matrices and Differential Forward Kinematics """
 
