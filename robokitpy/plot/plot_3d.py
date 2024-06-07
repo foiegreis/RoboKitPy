@@ -1,10 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
+from robokitpy.core.kinematics import *
 from robokitpy.core.ellipsoid import *
 
 """ Functions to plot robot and velocity and force ellipsoids in 3D """
-# TODO PLOT PRISMATIC JOINTS
 
 def get_robot_3d(model, thetalist):
     """
@@ -106,14 +105,15 @@ def plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
               length=0.08, color='r', normalize=True, arrow_length_ratio=0.5, label='End Effector')
 
     # Plot velocity and force ellipsoids -------------------------------
-    Aw, Av, Bw, Bv = ellipsoids_3d(J)
-    if velocity_ellipsoid:
-        A = Av if linear else Aw
-        plot_ellipsoid_3d(ax, A, end_effector_pos, scale, color='r')
-    if force_ellipsoid:
-        B = Bv if linear else Bw
-        if None not in B[1]:
-            plot_ellipsoid_3d(ax, B, end_effector_pos, scale, color='y')
+    if velocity_ellipsoid or force_ellipsoid:
+        Aw, Av, Bw, Bv = ellipsoids_3d(J)
+        if velocity_ellipsoid:
+            A = Av if linear else Aw
+            plot_ellipsoid_3d(ax, A, end_effector_pos, scale, color='r')
+        if force_ellipsoid:
+            B = Bv if linear else Bw
+            if None not in B[1]:
+                plot_ellipsoid_3d(ax, B, end_effector_pos, scale, color='y')
 
     # Show the plot ----------------------------------------------------
     ax.view_init(elev=20, azim=45)  # elev=20° above, azim=45° around the z-axis
@@ -126,4 +126,7 @@ def plot_robot_3d(model, thetalist, velocity_ellipsoid=False, force_ellipsoid=Fa
     ax.margins(0.1)
     ax.set_title(f'3D Visualization of the {name}, {joints_type} robot with {joints_num} dof')
     plt.show()
+
+
+
 

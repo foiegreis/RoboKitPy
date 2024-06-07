@@ -1,4 +1,5 @@
 from robokitpy.core.differential_kinematics import *
+import numpy as np
 import warnings
 warnings.filterwarnings('error', category=RuntimeWarning)
 
@@ -25,6 +26,7 @@ def ellipsoids_2d(J):
 
 
 def ellipsoids_3d(J):
+    """Computes the 3D ellipsoid given the Jacobian matrix J"""
 
     Jw, Jv = J[:3, :], J[3:, :]
 
@@ -87,6 +89,7 @@ def ellipsoid_measures(lambd):
 
 
 def print_measures(m_Aw, m_Av, m_Bw, m_Bv):
+    """Pribts the ellipsoid measures"""
 
     data = {'Vw': m_Aw, 'Vv': m_Av, 'Fw': m_Bw, 'Fv': m_Bv}
     print("Ellipsoids measures: ")

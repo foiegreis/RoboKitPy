@@ -1,6 +1,7 @@
 from robokitpy.plot.plot_3d import *
 from robokitpy.models.spatial.rrr import RRR
 
+""" Exanple of plotting the 3D RRR robot, also showing the 3D force and velocity ellipsoids"""
 
 if __name__ == '__main__':
 

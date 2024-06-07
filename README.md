@@ -29,6 +29,8 @@ RoboKitPy currently supports a wide range of functionalities centered around the
 - **Inverse Kinematics**: Determine the joint parameters necessary to achieve a desired end-effector position and orientation.
 - **Differential Forward Kinematics**: Analyze the velocity relationships between joint velocities and end-effector velocities, featuring the calculation of manipulability and force ellipsoids to assess the performance and capability of robotic manipulators.
 - **Statics**: Handle the static balance and force transmission within robotic structures.
+- **Dynamics**: Determine the Inverse and Forward Dynamics using the Newton-Euler approach.
+- **Trajectory Generation**: Algorithms for smooth trajectory planning for open-chain robots.
 
 ### Supported Robotic Models
 The library includes implementations for various robotic configurations, both planar and spatial, making it versatile for different educational and research needs:
@@ -45,8 +47,6 @@ The library includes implementations for various robotic configurations, both pl
 ### Upcoming Features
 RoboKitPy is actively being developed with future updates aimed at expanding its capabilities:
 
-- **Dynamics**: In-depth analysis of motion dynamics for better control and efficiency.
-- **Trajectory Generation**: Algorithms for smooth path planning for robot trajectories.
 - **Motion Planning and Obstacle Avoidance**: Enhanced algorithms for navigating through complex environments.
 - **Behavioral Planning**: Integration of decision-making processes in robotic tasks.
 - **SLAM**: Tools for robotic mapping and navigation in unknown environments.
@@ -96,8 +96,9 @@ The [`examples`](https://github.com/foiegreis/RoboKitPy/tree/main/robokitpy/exam
 
 ## Code Examples
 
-Let's see some examples for the UR5e Robot. We will analyze the Forward Kinematics using Denavit-Hartenberg and Product of Exponentials, as well as the Inverse Kinematics and we will then plot the robot and visualize the Manipulability and Force Ellipsoids.
+Let's see some examples of the functionalities provided by the code.
 
+### Forward Kinematics
 Starting with the Forward Kinematics:
 
 ```python
@@ -155,6 +156,7 @@ Forward Kinematics T06 applying PoE Space Form for the configuration [0.7854, -0
 
 ```
 
+### Inverse Kinematics
 For the inverse kinematics, the code will have a similar fashion:
 
 ```python
@@ -209,6 +211,7 @@ Expected result:
  [ 0.78539816 -0.78539816  0.78539816 -1.57079633 -1.57079633  0.78539816]
 ```
 
+### Velocity (Manipulability ) and Force Ellipsoids
 Finally, we plot the robot showing the Velocity (Manipulability) and Force Ellipsoids
 
 ```python
@@ -225,7 +228,107 @@ That will generate this 3D plot
 
 
 <p align="center">
-	<img src="docs/imgs/ur5e.png" width="500">
+	<img src="docs/imgs/ur5e_ellipsoid.png" width="600">
 </p>
 
+### Trajectory Generation
 
+Now we see an example of generating and plotting trajectories for a RRR robot.
+
+The available trajectories profiles are Trapezoidal, Cubic Polynomial and Quintic Polynomial
+
+The following code generates and plots a quintic polynomial Point-To-Point trajectory for the RRR robot
+
+```python
+
+import numpy as np
+from robokitpy.models.spatial.rrr import RRR
+from robokitpy.plot.plot_3d_trajectories import PlotTrajectory
+from robokitpy.core.trajectory import generate_p2p_trajectory
+
+""" Example of generating a point-to-point trajectory for a 3D RRR robot, and plotting the robot in 3D"""
+
+if __name__ == '__main__':
+
+    model = RRR()
+
+    # Initial and Final Joint Angles
+    q0 = np.array([0.5, -0.6, 1.0])
+    qf = np.array([1.57, 0.5, -2.0])
+
+    t0 = 0
+    tf = 5
+    N = 100
+
+    # For trapezoidal trajectory ------------
+    max_vel = 2
+    acc_time = 2
+    dec_time = 2
+    # --------------------------------------
+
+    trajectory_type = 'quintic'
+    trajectory = generate_p2p_trajectory(trajectory_type, q0, qf, t0, tf, N,
+                                     max_vel=max_vel, acc_time=acc_time, dec_time=dec_time,
+                                     plot=True)
+
+    plot_robot = PlotTrajectory(model, q0, qf)
+    plot_robot.plot_robot_trajectory(trajectory)
+
+
+
+```
+<p align="center">
+	<img src="docs/imgs/quintic_traj_p2p.png" width="600">
+</p>
+
+<p align="center">
+	<img src="docs/imgs/rrr_traj_p2p.gif" width="600">
+</p>
+
+While the following code generates and plots a quintic polynomial Viapoint trajectory for the RRR robot
+
+
+
+```python
+import numpy as np
+from robokitpy.models.spatial.rrr import RRR
+from robokitpy.plot.plot_3d_trajectories import PlotTrajectory
+from robokitpy.core.trajectory import generate_viapoint_trajectory
+
+""" Example of generating a viapoint trajectory for a 3D RRR robot, and plotting the robot in 3D"""
+
+if __name__ == '__main__':
+
+    model = RRR()
+
+    # Initial and Final Joint Angles
+    q0 = np.array([0.5, -0.6, 1.0])
+    qf = np.array([1.57, 0.5, -2.0])
+
+    # Intermediate waypoints
+    via_points = [np.array([1.0, -0.2, 0.8]), np.array([1.4, 0.0, 0.0])]
+
+    t0, tf = 0, 8
+    N = 100
+    # for trapezoidal trajectory
+    max_vel = 2
+    acc_time = 2
+    dec_time = 2
+
+    trajectory_type = 'quintic'
+    trajectory = generate_viapoint_trajectory(trajectory_type, q0, qf, via_points, t0, tf, N,
+                                               max_vel=max_vel, acc_time=acc_time, dec_time=dec_time,
+                                               plot=True)
+
+    plot_robot = PlotTrajectory(model, q0, qf, via_points)
+    plot_robot.plot_robot_trajectory(trajectory)
+
+
+```
+<p align="center">
+	<img src="docs/imgs/quintic_traj_viapoint.png" width="600">
+</p>
+
+<p align="center">
+	<img src="docs/imgs/rrr_traj_viapoint.gif" width="600">
+</p>
