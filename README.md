@@ -278,7 +278,7 @@ if __name__ == '__main__':
 
 ```
 <p align="center">
-	<img src="docs/imgs/quintic_traj_p2p.png" width="600">
+	<img src="docs/imgs/quintic_traj_p2p1.png" width="600">
 </p>
 
 <p align="center">
