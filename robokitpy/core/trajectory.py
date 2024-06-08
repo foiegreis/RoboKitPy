@@ -217,7 +217,11 @@ def cubic_trajectory(q0, qf, t0, tf, num_points):
                   [0, 1, 2*t0, 3*t0**2],
                   [0, 1, 2*tf, 3*tf**2]])
 
-    b = np.array([q0, qf, [0]*len(q0), [0]*len(q0)])
+    # TODO: Specify velocities
+    dq0 = [0]*len(q0)
+    dqf = [0]*len(qf)
+
+    b = np.array([q0, qf, dq0, dqf])
     coeffs = np.linalg.solve(A, b)
 
     times = np.linspace(t0, tf, num_points)
@@ -247,7 +251,14 @@ def quintic_trajectory(q0, qf, t0, tf, num_points):
                   [0, 1, 2*tf, 3*tf**2, 4*tf**3, 5*tf**4],
                   [0, 0, 2, 6*t0, 12*t0**2, 20*t0**3],
                   [0, 0, 2, 6*tf, 12*tf**2, 20*tf**3]])
-    b = np.array([q0, qf, [0]*len(q0), [0]*len(q0), [0]*len(q0), [0]*len(q0)])
+
+    # TODO Specify Velocities and Accelerations
+    dq0 = [0]*len(q0)
+    dqf = [0]*len(qf)
+    ddq0 = [0]*len(q0)
+    ddqf = [0]*len(qf)
+
+    b = np.array([q0, qf, dq0, dqf, ddq0, ddqf])
     coeffs = np.linalg.solve(A, b)
 
     times = np.linspace(t0, tf, num_points)
